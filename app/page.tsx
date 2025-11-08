@@ -41,13 +41,13 @@ export default async function HomePage() {
           // Render the appropriate component based on type
           switch (block.component) {
             case 'hero':
-              return <HeroSection key={block.id} settings={settings} />
+              return <HeroSection key={block.id} settings={settings as Record<string, any>} />
             case 'features':
-              return <FeaturesSection key={block.id} settings={settings} />
+              return <FeaturesSection key={block.id} settings={settings as Record<string, any>} />
             case 'portfolio':
               return <PortfolioSection key={block.id} />
             case 'contact':
-              return <ContactSection key={block.id} settings={settings} />
+              return <ContactSection key={block.id} settings={settings as Record<string, any>} />
             default:
               return null
           }

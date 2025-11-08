@@ -1,4 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk';
+import { Project } from '@/types';
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -90,7 +91,7 @@ export async function getProjects() {
       .depth(1);
     
     // Sort by completion date (newest first)
-    return response.objects.sort((a, b) => {
+    return response.objects.sort((a: Project, b: Project) => {
       const dateA = new Date(a.metadata?.completion_date || '').getTime();
       const dateB = new Date(b.metadata?.completion_date || '').getTime();
       return dateB - dateA;
@@ -133,7 +134,7 @@ export async function getFeaturedProjects() {
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    return response.objects.sort((a: Project, b: Project) => {
       const dateA = new Date(a.metadata?.completion_date || '').getTime();
       const dateB = new Date(b.metadata?.completion_date || '').getTime();
       return dateB - dateA;
